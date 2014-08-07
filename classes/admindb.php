@@ -4,7 +4,7 @@ class AdminDB
 {
 	static private $_localhost = 'localhost';
 	static private $_login = 'root';
-	static private $_password = 'yoloswag';
+	static private $_password = 'root';
 	static private $_DB = 'mydb';
 	protected $_link;
 	private function connect()
