@@ -1,0 +1,72 @@
+body {
+	background-color: #d8d8d8;
+}
+
+
+#header {
+	position: fixed;
+	top:0;
+	left:0;
+	padding-top:10px;
+	background-color: #FFF;
+	min-height: 80px;
+	width: 100%;
+	color: #d0d8dc;
+	z-index:10;
+	border-top: 2px solid #c8c8c8;
+}
+
+.inner {
+	width: 80%;
+	min-width: 700px;
+	margin: auto;
+	position: relative;
+	padding: 1px;
+}
+
+#site_logo {
+	display: block;
+	width: 128px;
+	height: 48px;
+	position: absolute;
+	top: 10px;
+	left: 16px;
+	background:  url('/img/CEE.gif') no-repeat center;
+	background-size: 128px 48px;
+}
+
+.top_menu a+a {
+	border-left:1px solid #d0d8dc;
+}
+.top_menu a:hover {
+	color: #89b;
+}
+.top_menu a {
+	display: inline-block;
+	color: #568;
+	font-family: sans-serif, Arial, Verdana;
+	font-size: 24px;
+	font-weight: bold;
+	text-decoration:none;
+	text-align: left;
+	padding: 10px 10px;
+}
+.top_menu {
+	display: inline-block;
+	margin-left: calc(50% - 192px);
+	padding: 10px 10px;
+}
+
+.top_right_tools {
+}
+
+#bodyframe {
+	display:block;
+	position: absolute;
+	top: 120px;
+	left: 10%;
+	width:50%;
+	min-height: 80%;
+	border-radius: 12px;
+	background-color: #fff;
+}

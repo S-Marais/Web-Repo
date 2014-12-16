@@ -4,12 +4,13 @@ class RegisterController extends Controller
 {
 	public function __construct()
 	{
-		$this->_other();
+		parent::__construct();
+		$this->_render_view();
 	}
 
-	protected function _other()
+	protected function _render_view()
 	{
-		$this->templateName = 'views/layout.html';
-		$this->renderView();
+		$this->tpl->assign('title', 'Register:');
+		$this->render();
 	}
 }

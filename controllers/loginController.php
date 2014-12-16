@@ -4,12 +4,14 @@ class LoginController extends Controller
 {
 	public function __construct()
 	{
-		echo 'This is the login page<br />';
-		$this->_other();
+		parent::__construct();
+		$this->template_name = _TEMPLATE_DIR_.'/login/view.tpl.html';
+		$this->_render_view();
 	}
 
-	protected function _other()
+	protected function _render_view()
 	{
-		echo 'This is the other function, lolz.';
+		$this->tpl->assign('title', 'Please login:');
+		$this->render();
 	}
 }

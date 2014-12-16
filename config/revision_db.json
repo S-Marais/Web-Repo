@@ -1,0 +1,18 @@
+[
+	{
+		"ref" : "db-init",
+		"up" : [
+			"CREATE TABLE IF NOT EXISTS cee_revision (id_revision INT NOT NULL AUTO_INCREMENT, ref VARCHAR(32) NOT NULL, down TEXT, PRIMARY KEY (id_revision));"
+		],
+		"down" : [
+		]
+	},
+	{
+		"ref" : "db-0",
+		"up" : [
+			"CREATE TABLE IF NOT EXISTS cee_user (id_user INT NOT NULL AUTO_INCREMENT, firstname VARCHAR(32) NOT NULL, lastname VARCHAR(32) NOT NULL, password VARCHAR(40) NOT NULL, id_profile INT NOT NULL, PRIMARY KEY (id_user));"
+		],
+		"down" : [
+		]
+	}
+]

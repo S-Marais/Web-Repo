@@ -2,11 +2,19 @@
 
 class Controller
 {
-	public $templateName;
+	public $token;
+	public $tpl;
+	public $template_name = false;
 
-	protected function renderView()
+	public function __construct()
 	{
-		$view = file_get_contents("$this->templateName");
-		echo $view;
-	}	
+		$this->token = Tools::getValue('token');
+		$this->template_name = _TEMPLATE_DIR_.'/'.strtolower(preg_replace('/Controller$/', '', get_class($this))).'/view.tpl.html';
+		$this->tpl = new tpl();
+	}
+
+	protected function render()
+	{
+		$this->tpl->display($this->template_name);
+	}
 }

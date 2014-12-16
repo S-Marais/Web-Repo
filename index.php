@@ -1,6 +1,17 @@
 <?php
 
 /**
+ * Loading configuration file
+ */
+require_once 'config/globals.php';
+
+/**
+ * Loading smarty template engine:
+ */
+require_once 'Smarty-3.1.21/libs/Smarty.class.php';
+require_once 'tpl.class.php';
+
+/**
  *	This index.php at the root of your project will act as a router.
  *	@classes directory contains all classes.
  *	@controllers directory contains all controllers.
@@ -9,6 +20,11 @@ foreach (glob("classes/*.php") as $filename)
 	include $filename;
 foreach (glob("controllers/*Controller.php") as $filename)
 	include $filename;
+
+/**
+ * Revision of data base :
+ */
+DbRevision::processRevision();
 
 /**
  *	Instanciate a route object.
@@ -21,6 +37,7 @@ $route = new Route();
  *	@route->add($uri, $method = null);
  */
 $route->add('/', 'HomeController');
+$route->add('/home', 'HomeController');
 $route->add('/register', 'RegisterController');
 $route->add('/login', 'LoginController');
 
