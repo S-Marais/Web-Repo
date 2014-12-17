@@ -6,7 +6,7 @@ class Db
 	private $_login = 'root';
 	private $_password = 'root';
 	private $_DB = 'cee';
-	public $_repport;
+	public $repport;
 	protected $_link;
 
 	public function __construct()
@@ -45,7 +45,7 @@ class Db
 			}
 			return null;
 		} else {
-			$this->_repport = 'Error whil attempting to connect to database.';
+			$this->repport = 'Error whil attempting to connect to database.';
 		}
 		return $result;
 	}
@@ -57,7 +57,7 @@ class Db
 			$result = !!(mysqli_query($this->_link, $sql));
 			$this->disconnect();
 		} else {
-			$this->_repport = 'Error whil attempting to connect to database.';
+			$this->repport = 'Error whil attempting to connect to database.';
 		}
 		return $result;
 	}

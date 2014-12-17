@@ -18,9 +18,11 @@ class DbRevision
 					foreach ($downs as $down)
 					{
 						Db::getInstance()->execute($down);
-						$query = new DbQuery();
-						$query->deleteFrom('revision',);
 					}
+					$query = new DbQuery();
+					$query->deleteFrom('revision', 'r');
+					$query->where('r.id_revision='.$past_update['id_revision']);
+					Db::getInstance()->execute($query);
 				}
 			}
 		}
@@ -54,6 +56,7 @@ class DbRevision
 		$query = new DbQuery();
 		$query->select('ref');
 		$query->select('down');
+		$query->select('id_revision');
 		$query->from('revision');
 		$previous_revisions = Db::getInstance()->getAnswer($query);
 		if (!$previous_revisions)

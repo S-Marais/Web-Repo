@@ -18,6 +18,8 @@ require_once 'tpl.class.php';
  */
 foreach (glob("classes/*.php") as $filename)
 	include $filename;
+foreach (glob("classes/db_objects/*.php") as $filename)
+	include $filename;
 foreach (glob("controllers/*Controller.php") as $filename)
 	include $filename;
 
@@ -25,6 +27,11 @@ foreach (glob("controllers/*Controller.php") as $filename)
  * Revision of data base :
  */
 DbRevision::processRevision();
+
+/**
+ * start session here (may be moved later into a Session class)
+ */
+session_start();
 
 /**
  *	Instanciate a route object.

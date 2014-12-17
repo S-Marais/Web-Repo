@@ -1,5 +1,5 @@
 Web-Repository
 ===============
 
-Routing sytem dealt - 10.08.2014
-Query and Db classes created - 16.12.2014
+Routing sytem done - 10.08.2014<br/>
+DbObject, DbQuery and Db classes created - 16.12.2014<br/>

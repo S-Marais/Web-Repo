@@ -13,23 +13,26 @@ class DbQuery
 	private $_orderBy;
 	private $_limit;
 	private $_onDuplicateKeyUpdate;
+	private $_update;
+	private $_set;
 
 	public function __construct()
 	{
 		$this->_join = '';
 	}
 
-	public function select($value)
+	public function select($value, $alias=null)
 	{
 		if ($this->_select) {
-			$this->_select .= ', '.$value;
+			$this->_select .= ', '.$value.($alias ? ' AS '.$alias : '');
 		} else {
-			$this->_select = 'SELECT '.$value;
+			$this->_select = 'SELECT '.$value.($alias ? ' AS '.$alias : '');
 		}
 	}
 
 	public function insertInto($table, $columns, $prefixed = true)
 	{
+		$columns = array_values($columns);
 		$this->_insertInto = 'INSERT INTO '.($prefixed ? _DB_PREFIX_ : '').$table.' (';
 		if (is_array($columns)) {
 			foreach ($columns as $key => $col) {
@@ -41,16 +44,36 @@ class DbQuery
 		}
 	}
 
-	public function values($value) {
-		if (!$this->_values) {
-			$this->_values = "\nVALUES(".$value.')';
+	public function update($table, $alias, $prefixed = true)
+	{
+		if (!$this->_update) {
+			$this->_update = 'UPDATE '.($prefixed ? _DB_PREFIX_ : '').$table.($alias ? ' '.$alias : '');
 		} else {
-			$this->_values = substr($this->_values, 0, -1);
-			$this->_values .= ', '.$value.')';
+			$this->_update .= ', '.($prefixed ? _DB_PREFIX_ : '').$table.($alias ? ' '.$alias : '');
 		}
 	}
 
-	public function onDuplicateKeyUpdate($rule) {
+	public function set($value)
+	{
+		if (!$this->_set) {
+			$this->_set = "\nSET ".$value;
+		} else {
+			$this->_set .= ", ".$value;
+		}
+	}
+
+	public function values($value)
+	{
+		if (!$this->_values) {
+			$this->_values = "\nVALUES('".$value.'\')';
+		} else {
+			$this->_values = substr($this->_values, 0, -1);
+			$this->_values .= ', \''.$value.'\')';
+		}
+	}
+
+	public function onDuplicateKeyUpdate($rule)
+	{
 		if ($rule) {
 			$this->_onDuplicateKeyUpdate = "\nON DUPLICATE KEY UPDATE ".$rule;
 		} else {
@@ -58,11 +81,12 @@ class DbQuery
 		}
 	}
 
-	public function deleteFrom($table, $alias=false, $prefixed = true) {
+	public function deleteFrom($table, $alias=null, $prefixed = true)
+	{
 		if ($this->_deleteFrom) {
-			$this->_deleteFrom .= ', '.($prefixed ? _DB_PREFIX_ : '').$table.($alias ? ' AS '.$alias);
+			$this->_deleteFrom .= ', '.($prefixed ? _DB_PREFIX_ : '').$table.($alias ? ' AS '.$alias: '');
 		} else {
-			$this->_deleteFrom = 'DELETE FROM '.($prefixed ? _DB_PREFIX_ : '').$table.($alias ? ' AS '.$alias);
+			$this->_deleteFrom = 'DELETE FROM '.($prefixed ? _DB_PREFIX_ : '').$table.($alias ? ' AS '.$alias: '');
 		}
 	}
 
@@ -125,7 +149,7 @@ class DbQuery
 
 	public function __toString()
 	{
-		if (!$this->_insertInto && !$this->_deleteFrom) {
+		if (!$this->_insertInto && !$this->_deleteFrom && !$this->_update) {
 			return (
 				$this->_select
 				.$this->_from
@@ -135,22 +159,32 @@ class DbQuery
 				.$this->_orderBy
 				.$this->_limit
 			);
-		} elseif (!$this->_deleteFrom) {
+		} elseif ($this->_insertInto) {
 			return (
-				$this->insertInto
+				$this->_insertInto
 				.($this->_values ? $this->_values : $this->_select
-				.$this->_from
-				.$this->_join
-				.$this->_where
-				.$this->_groupBy
-				.$this->_orderBy
-				.$this->_limit)
+					.$this->_from
+					.$this->_join
+					.$this->_where
+					.$this->_groupBy
+					.$this->_orderBy
+					.$this->_limit
+				)
 				.$this->_onDuplicateKeyUpdate
 			);
-		} else {
+		} elseif ($this->_deleteFrom)  {
 			return (
 				$this->_deleteFrom
 				.$this->_join
+				.$this->_where
+				.$this->_orderBy
+				.$this->_limit
+			);
+		} elseif ($this->_update && $this->_set)  {
+			return (
+				$this->_update
+				.$this->_join
+				.$this->_set
 				.$this->_where
 				.$this->_orderBy
 				.$this->_limit
