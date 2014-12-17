@@ -1,27 +1,10 @@
 <?php
 
 /**
- * Loading configuration file
+ * Loading required files
  */
-require_once 'config/globals.php';
-
-/**
- * Loading smarty template engine:
- */
-require_once 'Smarty-3.1.21/libs/Smarty.class.php';
-require_once 'tpl.class.php';
-
-/**
- *	This index.php at the root of your project will act as a router.
- *	@classes directory contains all classes.
- *	@controllers directory contains all controllers.
- */
-foreach (glob("classes/*.php") as $filename)
-	include $filename;
-foreach (glob("classes/db_objects/*.php") as $filename)
-	include $filename;
-foreach (glob("controllers/*Controller.php") as $filename)
-	include $filename;
+require_once 'classes/filesloader.php';
+FilesLoader::init();
 
 /**
  * Revision of data base :
@@ -49,14 +32,16 @@ $route->add('/register', 'RegisterController');
 $route->add('/login', 'LoginController');
 
 /**
- *	Adding Modules to the router.
- *	A module should possess the following directories.
- *	@classes
- *	@controllers
- *	@views
+ *	Adding Modules to the framework.
+ * 	@Todo: Static method in file loader to seek all directories in "modules",
+ * 	Route method to seek and register all controllers from modules
+ *	A module should possess the following directories:
+ * 	/moduleName/ <- its own directory
+ *	/moduleName/classes
+ *	/moduleName/controllers
+ *	/moduleName/views
+ * 	/moduleName/moduleName.php <- Controllers from modules are  defined here.
  */
-
-/*********TODO MISSING CODE*********/
 
 /**
  *	Finaly ready to go!

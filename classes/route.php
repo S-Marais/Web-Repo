@@ -23,13 +23,13 @@ class Route
 	 */
 	public function submit()
 	{
-		$uriGetParam = isset($_GET['uri']) ? '/'.$_GET['uri'] : '/';
+		$uri_get_param = isset($_GET['uri']) ? '/'.$_GET['uri'] : '/';
 		foreach ($this->_uri as $Key => $Value)
 		{
-			if (preg_match("#^$Value$#", $uriGetParam))
+			if (preg_match("#^$Value$#", $uri_get_param))
 			{
-				$useMethod = $this->_method[$Key];
-				new $useMethod();
+				$use_method = $this->_method[$Key];
+				new $use_method();
 			}
 		}
 	}

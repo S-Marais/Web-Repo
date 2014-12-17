@@ -1,23 +1,22 @@
+{*
+ *	This file Must be extended for all templates as it contains required smarty
+ *	references that allow JS and CSS loading from controllers
+ *}
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" href="css/main.css" />
+		{foreach $CSS_FILES as $CSS_FILE}
+		<link rel="stylesheet" type="text/css" href="{$CSS_FILE}"/>
+		{/foreach}
+		{foreach $JS_FILES as $JS_FILE}
+		<script type="text/javascript" src="{$JS_FILE}"></script>
+		{/foreach}
 		{block name="head"}
 		{/block}
 	</head>
 	<body>
-		{block name="header"}
-		<div id="header">
-			<div class="inner">
-				<div id="site_logo"></div>
-				<div class="top_menu">
-					<a href="">Etudiants</a>
-					<a href="">Offres</a>
-					<a href="">Entreprises</a>
-				</div>
-			</div>
-		</div>
-		{/block}
 		{block name="body"}
+		{/block}
+		{block name="header"}
 		{/block}
 	</body>
 </html>

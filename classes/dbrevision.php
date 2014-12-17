@@ -36,8 +36,7 @@ class DbRevision
 			$query->select('r.id_revision');
 			$query->from('revision', 'r');
 			$query->where('r.ref = "'.$update['ref'].'"');
-			$query->limit(1);
-			$check = Db::getInstance()->getAnswer($query);
+			$check = Db::getInstance()->getRow($query);
 			if (!$check) {
 				foreach ($update['up'] as $sql) {
 					Db::getInstance()->execute($sql);
@@ -58,7 +57,7 @@ class DbRevision
 		$query->select('down');
 		$query->select('id_revision');
 		$query->from('revision');
-		$previous_revisions = Db::getInstance()->getAnswer($query);
+		$previous_revisions = Db::getInstance()->getRows($query);
 		if (!$previous_revisions)
 			$previous_revisions = array();
 		$current_revisions = json_decode(file_get_contents(_CONFIG_DIR_.'/revision_db.json'), true);

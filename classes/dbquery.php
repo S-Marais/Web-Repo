@@ -3,16 +3,16 @@
 class DbQuery
 {
 	private $_select;
-	private $_insertInto;
+	private $_insert_into;
 	private $_values;
-	private $_deleteFrom;
+	private $_delete_from;
 	private $_from;
 	private $_join;
 	private $_where;
-	private $_groupBy;
-	private $_orderBy;
+	private $_group_by;
+	private $_order_by;
 	private $_limit;
-	private $_onDuplicateKeyUpdate;
+	private $_on_duplicate_key_update;
 	private $_update;
 	private $_set;
 
@@ -33,14 +33,14 @@ class DbQuery
 	public function insertInto($table, $columns, $prefixed = true)
 	{
 		$columns = array_values($columns);
-		$this->_insertInto = 'INSERT INTO '.($prefixed ? _DB_PREFIX_ : '').$table.' (';
+		$this->_insert_into = 'INSERT INTO '.($prefixed ? _DB_PREFIX_ : '').$table.' (';
 		if (is_array($columns)) {
 			foreach ($columns as $key => $col) {
-				$this->_insertInto .= ($key ? ', `' : '`').($col ? $col : '0').'`';
+				$this->_insert_into .= ($key ? ', `' : '`').($col ? $col : '0').'`';
 			}
-			$this->_insertInto .= ')';
+			$this->_insert_into .= ')';
 		} else {
-			$this->_insertInto .= '`'.$col.'`)';
+			$this->_insert_into .= '`'.$col.'`)';
 		}
 	}
 
@@ -75,18 +75,18 @@ class DbQuery
 	public function onDuplicateKeyUpdate($rule)
 	{
 		if ($rule) {
-			$this->_onDuplicateKeyUpdate = "\nON DUPLICATE KEY UPDATE ".$rule;
+			$this->_on_duplicate_key_update = "\nON DUPLICATE KEY UPDATE ".$rule;
 		} else {
-			$this->_onDuplicateKeyUpdate = null;
+			$this->_on_duplicate_key_update = null;
 		}
 	}
 
 	public function deleteFrom($table, $alias=null, $prefixed = true)
 	{
-		if ($this->_deleteFrom) {
-			$this->_deleteFrom .= ', '.($prefixed ? _DB_PREFIX_ : '').$table.($alias ? ' AS '.$alias: '');
+		if ($this->_delete_from) {
+			$this->_delete_from .= ', '.($prefixed ? _DB_PREFIX_ : '').$table.($alias ? ' AS '.$alias: '');
 		} else {
-			$this->_deleteFrom = 'DELETE FROM '.($prefixed ? _DB_PREFIX_ : '').$table.($alias ? ' AS '.$alias: '');
+			$this->_delete_from = 'DELETE FROM '.($prefixed ? _DB_PREFIX_ : '').$table.($alias ? ' AS '.$alias: '');
 		}
 	}
 
@@ -126,19 +126,19 @@ class DbQuery
 
 	public function groupBy($value)
 	{
-		if (!$this->_groupBy) {
-			$this->_groupBy = "\nGROUP BY ".$value;
+		if (!$this->_group_by) {
+			$this->_group_by = "\nGROUP BY ".$value;
 		} else {
-			$this->_groupBy .= ', '.$value;
+			$this->_group_by .= ', '.$value;
 		}
 	}
 
 	public function orderBy($value)
 	{
-		if (!$this->_orderBy) {
-			$this->_orderBy = "\nORDER BY ".$value;
+		if (!$this->_order_by) {
+			$this->_order_by = "\nORDER BY ".$value;
 		} else {
-			$this->_orderBy .= ', '.$value;
+			$this->_order_by .= ', '.$value;
 		}
 	}
 
@@ -149,35 +149,35 @@ class DbQuery
 
 	public function __toString()
 	{
-		if (!$this->_insertInto && !$this->_deleteFrom && !$this->_update) {
+		if (!$this->_insert_into && !$this->_delete_from && !$this->_update) {
 			return (
 				$this->_select
 				.$this->_from
 				.$this->_join
 				.$this->_where
-				.$this->_groupBy
-				.$this->_orderBy
+				.$this->_group_by
+				.$this->_order_by
 				.$this->_limit
 			);
-		} elseif ($this->_insertInto) {
+		} elseif ($this->_insert_into) {
 			return (
-				$this->_insertInto
+				$this->_insert_into
 				.($this->_values ? $this->_values : $this->_select
 					.$this->_from
 					.$this->_join
 					.$this->_where
-					.$this->_groupBy
-					.$this->_orderBy
+					.$this->_group_by
+					.$this->_order_by
 					.$this->_limit
 				)
-				.$this->_onDuplicateKeyUpdate
+				.$this->_on_duplicate_key_update
 			);
-		} elseif ($this->_deleteFrom)  {
+		} elseif ($this->_delete_from)  {
 			return (
-				$this->_deleteFrom
+				$this->_delete_from
 				.$this->_join
 				.$this->_where
-				.$this->_orderBy
+				.$this->_order_by
 				.$this->_limit
 			);
 		} elseif ($this->_update && $this->_set)  {
@@ -186,7 +186,7 @@ class DbQuery
 				.$this->_join
 				.$this->_set
 				.$this->_where
-				.$this->_orderBy
+				.$this->_order_by
 				.$this->_limit
 			);
 		}

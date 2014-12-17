@@ -46,8 +46,7 @@ abstract class DbObject
 			}
 			$query->from($this->_table_name, null, $this->_prefixed);
 			$query->where('id_'.$this->_table_name.' = '.$id);
-			$query->limit(1);
-			$values = $this->instance_Db->getAnswer($query);
+			$values = $this->instance_Db->getRow($query);
 			if (!$values)
 				return;
 			foreach ($this->_definition as $column => $type) {

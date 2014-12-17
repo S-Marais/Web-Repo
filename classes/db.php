@@ -31,7 +31,7 @@ class Db
 		mysqli_close($this->_link);
 	}
 
-	public function getAnswer($sql)
+	public function getRows($sql)
 	{
 		$result = null;
 		if ($this->connect()) {
@@ -42,6 +42,25 @@ class Db
 					$rows[] = $row;
 				$result->free();
 				return $rows;
+			}
+			return null;
+		} else {
+			$this->repport = 'Error whil attempting to connect to database.';
+		}
+		return $result;
+	}
+
+	// LIMIT the result to one using 'LIMIT 1' statement and return the row.
+	public function getRow($sql)
+	{
+		$result = null;
+		if ($this->connect()) {
+			$result = mysqli_query($this->_link, $sql."\nLIMIT 1;");
+			$this->disconnect();
+			if ($result && mysqli_num_rows($result) > 0) {
+				$row = $result->fetch_array(MYSQLI_ASSOC);
+				$result->free();
+				return $row;
 			}
 			return null;
 		} else {
