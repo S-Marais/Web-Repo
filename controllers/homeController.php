@@ -12,6 +12,12 @@ class HomeController extends Controller
 		$this->_render_view();
 	}
 
+	public function setMedia()
+	{
+		$this->addCSS('css/home.css');
+		parent::setMedia();
+	}
+
 	protected function _render_view()
 	{
 		$this->render();
