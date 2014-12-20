@@ -8,8 +8,9 @@ class Route
 	{
 		$this->_uri_method = array(
 			_ROOT_DIR_.'home'		=> 'HomeController',
-			_ROOT_DIR_.'register'	=> 'RegisterController',
-			_ROOT_DIR_.'login'		=> 'LoginController',
+			_ROOT_DIR_.'student'	=> 'StudentController',
+			_ROOT_DIR_.'recruiter'	=> 'RecruiterController',
+			_ROOT_DIR_.'association'=> 'AssociationController',
 		);
 	}
 
@@ -31,9 +32,9 @@ class Route
 	public function submit()
 	{
 		$uri_get_param = isset($_GET['uri']) ? _ROOT_DIR_.$_GET['uri'] : _ROOT_DIR_;
-		foreach ($this->_uri_method as $key => $value) {
+		foreach ($this->_uri_method as $key => $controller) {
 			if (preg_match("#^$key$#", $uri_get_param)) {
-				return new $value();
+				return new $controller();
 			}
 		}
 		header('Location: '._ROOT_DIR_.'home');

@@ -21,8 +21,6 @@ Class Cookie
 		$this->_name = md5(_SECURE_KEY_.$name);
 		$this->_path = ($path ? $path : $this->_path);
 		$this->_key = _COOKIE_KEY_;
-		$this->_iv = _COOKIE_IV_;
-		$this->_cipherTool = new Blowfish($this->_key, $this->_iv);
 		$this->update();
 	}
 
@@ -32,7 +30,7 @@ Class Cookie
 		if ($this->exists())
 		{
 			/* Decrypt cookie content */
-			$content = $this->_cipherTool->decrypt($_COOKIE[$this->_name]);
+			$content = Tools::decrypt_blowfish($_COOKIE[$this->_name], $this->key);
 			$checksum = crc32($this->_iv.substr($content, 0, strrpos($content, '¤') + 2));
 			$tmpTab = explode('¤', $content);
 			foreach ($tmpTab as $keyAndValue)
@@ -137,7 +135,7 @@ Class Cookie
 	{
 		if ($cookie)
 		{
-			$content = $this->_cipherTool->encrypt($cookie);
+			$content = Tools::decrypt_blowfish($cookie, $this->_key);
 			$time = $this->_expire;
 		}
 		else

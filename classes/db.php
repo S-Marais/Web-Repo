@@ -8,6 +8,7 @@ class Db
 	private $_login = 'root';
 	private $_password = 'root';
 	private $_DB = 'cee';
+	// @TODO : remove $repport and call Exception.
 	public $repport;
 	protected $_link;
 
