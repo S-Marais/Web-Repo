@@ -32,15 +32,15 @@ class DbQuery
 
 	public function insertInto($table, $columns, $prefixed = true)
 	{
-		$columns = array_values($columns);
 		$this->_insert_into = 'INSERT INTO '.($prefixed ? _DB_PREFIX_ : '').$table.' (';
 		if (is_array($columns)) {
+			$columns = array_values($columns);
 			foreach ($columns as $key => $col) {
 				$this->_insert_into .= ($key ? ', `' : '`').($col ? $col : '0').'`';
 			}
 			$this->_insert_into .= ')';
 		} else {
-			$this->_insert_into .= '`'.$col.'`)';
+			$this->_insert_into .= $columns.')';
 		}
 	}
 
@@ -81,12 +81,12 @@ class DbQuery
 		}
 	}
 
-	public function deleteFrom($table, $alias=null, $prefixed = true)
+	public function deleteFrom($table, $prefixed = true)
 	{
 		if ($this->_delete_from) {
-			$this->_delete_from .= ', '.($prefixed ? _DB_PREFIX_ : '').$table.($alias ? ' AS '.$alias: '');
+			$this->_delete_from .= ', '.($prefixed ? _DB_PREFIX_ : '').$table;
 		} else {
-			$this->_delete_from = 'DELETE FROM '.($prefixed ? _DB_PREFIX_ : '').$table.($alias ? ' AS '.$alias: '');
+			$this->_delete_from = 'DELETE FROM '.($prefixed ? _DB_PREFIX_ : '').$table;
 		}
 	}
 

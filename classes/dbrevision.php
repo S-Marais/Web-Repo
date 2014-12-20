@@ -20,8 +20,9 @@ class DbRevision
 						Db::getInstance()->execute($down);
 					}
 					$query = new DbQuery();
-					$query->deleteFrom('revision', 'r');
-					$query->where('r.id_revision='.$past_update['id_revision']);
+					$query->deleteFrom('revision');
+					$query->where('id_revision='.$past_update['id_revision']);
+					echo $query."\n";
 					Db::getInstance()->execute($query);
 				}
 			}
@@ -42,9 +43,9 @@ class DbRevision
 					Db::getInstance()->execute($sql);
 				}
 				$query = new DbQuery();
-				$query->insertInto('revision', '(`ref`, `down`)');
+				$query->insertInto('revision', '`ref`, `down`');
 				$query->values($update['ref']);
-				$query->values(json_encode($update['down']));
+				$query->values(Tools::protectQuotes(json_encode($update['down'])));
 				Db::getInstance()->execute($query);
 			}
 		}

@@ -12,6 +12,13 @@ class Tools
 		return false;
 	}
 
+	static public function protectQuotes($string, $double = false)
+	{
+		if ($double)
+			return preg_replace('"', '\"', $string);
+		return preg_replace("/'/", "\'", $string);
+	}
+
 	static public function decrypt_blowfish($data, $key){
 		$iv=pack("H*" , substr($data,0,16));
 		$x =pack("H*" , substr($data,16)); 
