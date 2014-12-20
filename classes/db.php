@@ -2,6 +2,8 @@
 
 class Db
 {
+    /* singleton */
+    private static $instance;
 	private $_localhost = 'localhost';
 	private $_login = 'root';
 	private $_password = 'root';
@@ -15,7 +17,10 @@ class Db
 
 	static public function getInstance()
 	{
-		return new Db();
+        if (!isset(self::$instance)) {
+            self::$instance = new Db();
+        }
+        return self::$instance;
 	}
 
 	private function connect()
@@ -64,7 +69,7 @@ class Db
 			}
 			return null;
 		} else {
-			$this->repport = 'Error whil attempting to connect to database.';
+			$this->repport = 'Error while attempting to connect to database.';
 		}
 		return $result;
 	}

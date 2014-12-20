@@ -31,14 +31,11 @@ class Route
 	public function submit()
 	{
 		$uri_get_param = isset($_GET['uri']) ? _ROOT_DIR_.$_GET['uri'] : _ROOT_DIR_;
-		if (preg_match("#^"._ROOT_DIR_."$#", $uri_get_param)) {
-			header(_ROOT_DIR_.'home');
-		} else {
-			foreach ($this->_uri_method as $key => $value) {
-				if (preg_match("#^$key$#", $uri_get_param)) {
-					new $value();
-				}
+		foreach ($this->_uri_method as $key => $value) {
+			if (preg_match("#^$key$#", $uri_get_param)) {
+				return new $value();
 			}
 		}
+		header('Location: '._ROOT_DIR_.'home');
 	}
 }

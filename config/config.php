@@ -8,7 +8,7 @@ ini_set('display_errors', TRUE);
 ini_set('display_startup_errors', TRUE);
 
 /*
- * Session start will be moved later from here in a session or context class
+ * Session start may be moved later in a session class
  */
 session_start();
 
@@ -32,3 +32,8 @@ require_once _ROOT_DIR_.'config/autoloader.php';
  * Revision of data base :
  */
 DbRevision::processRevision();
+
+/*
+ * Initialise Context.
+ */
+Context::getContext()->initContext();

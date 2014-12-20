@@ -10,3 +10,8 @@ define('_CONTROLLERS_DIR_', _ROOT_DIR_.'controllers');
 
 // DB defines
 define('_DB_PREFIX_', 'cee_');
+
+// Variables
+define('_SECURE_KEY_', 'poé_çv)àvv=LLcl3Kàf387é9mlv6+m831é$vmù3ds12ùq8wb54q6_');
+define('_COOKIE_KEY_', 'wT@9&hrVnAéê$0pQù0cù9Uà1JkèOyéo');
+define('_COOKIE_IV_', 'law!3yCI4èèDZHWùHo^x1i@bD&éG');
