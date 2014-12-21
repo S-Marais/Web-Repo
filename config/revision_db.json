@@ -5,12 +5,13 @@
 			"CREATE TABLE IF NOT EXISTS cee_revision (id_revision INT NOT NULL AUTO_INCREMENT, ref VARCHAR(32) NOT NULL, down TEXT, PRIMARY KEY (id_revision));"
 		],
 		"down" : [
+			"DROP TABLE IF EXISTS cee_revision;"
 		]
 	},
 	{
 		"ref" : "Core:0",
 		"up" : [
-			"CREATE TABLE IF NOT EXISTS cee_user (id_user INT NOT NULL AUTO_INCREMENT, firstname VARCHAR(32) NOT NULL, lastname VARCHAR(32) NOT NULL, password VARCHAR(64) NOT NULL, id_profile INT NOT NULL, PRIMARY KEY (id_user));"
+			"CREATE TABLE IF NOT EXISTS cee_user (id_user INT NOT NULL AUTO_INCREMENT, firstname VARCHAR(32) NOT NULL, lastname VARCHAR(32) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(64) NOT NULL, id_profile INT NOT NULL, PRIMARY KEY (id_user));"
 		],
 		"down" : [
 			"DROP TABLE IF EXISTS cee_user;"

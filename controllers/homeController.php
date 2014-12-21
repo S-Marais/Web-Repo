@@ -27,6 +27,33 @@ class HomeController extends Controller
 	public function processRegisterUser()
 	{
 		if (Token::isValid($this->context)) {
+			$email = Tools::getValue('email');
+			$profile = Tools::getValue('profile');
+			$firstname = Tools::getValue('firstname');
+			$lastname = Tools::getValue('lastname');
+			$password = Tools::getValue('password');
+
+			$user = new User();
+			$user->email = $email;
+			$user->profile = $profile;
+			$user->firstname = $firstname;
+			$user->lastname = $lastname;
+			$user->password = MD5(_SECURE_KEY_.$password);
+			$user->save();
+			die (json_encode(array(
+				"result" => true,
+				"msg" => "Wellcome ".$user->firstname,
+			)));
+		}
+		die (json_encode(array(
+			"result" => false,
+			"error" => 'Nope!',
+		)));
+	}
+
+	public function processLoginUser()
+	{
+		if (Token::isValid($this->context)) {
 			die (json_encode(array(
 				"result" => true,
 				"msg" => "Its something!",
