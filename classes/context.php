@@ -7,7 +7,9 @@ class Context
 
 	public $cookie;
 	public $user;
-	public $token;
+	public $received_token;
+	public $old_token;
+	public $new_token;
 	public $id_lang;
 
 	public static function getContext()
@@ -22,7 +24,9 @@ class Context
 	{
 		$this->cookie = new Cookie('context');
 		$this->user = new User((int)$this->cookie->__get('id_user'));
-		$this->token = Tools::getValue('token');
+		$this->received_token = Tools::getValue('token');
+		$this->old_token = Session::get('token');
+		$this->new_token = Token::generate($this->user);
 		$this->id_lang = (int)$this->cookie->__get('id_lang');
 	}
 

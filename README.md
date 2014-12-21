@@ -13,3 +13,5 @@ Created an AutoLoader to load the classes dynamicly<br/>
 Enable some errors display<br/>
 <b>--- 19.12.2014 ---</b><br/>
 Cookie class imported and Context class created.<br/>
+<b>--- 20.12.2014 ---</b><br/>
+Context class improved token and session class created.<br/>

@@ -12,11 +12,16 @@ class Tools
 		return false;
 	}
 
-	static public function protectQuotes($string, $double = false)
+	static public function escape($string, $double = false)
 	{
 		if ($double)
 			return preg_replace('"', '\"', $string);
 		return preg_replace("/'/", "\'", $string);
+	}
+
+	static public function redirect($url, $domain_name = true)
+	{
+		header('Location: '._ROOT_DIR_.$url);
 	}
 
 	static public function decrypt_blowfish($data, $key){

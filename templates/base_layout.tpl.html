@@ -10,6 +10,11 @@
 		{foreach $JS_FILES as $JS_FILE}
 		<script type="text/javascript" src="{$JS_FILE}"></script>
 		{/foreach}
+		<script type="text/javascript">
+		{foreach $JS_VARS as $JS_VAR_LABEL => $JS_VAR_VALUE}
+			var {$JS_VAR_LABEL} = "{$JS_VAR_VALUE}";
+		{/foreach}
+		</script>
 		{block name="head"}
 		{/block}
 	</head>
@@ -17,6 +22,8 @@
 		{block name="body"}
 		{/block}
 		{block name="header"}
+		{/block}
+		{block name="dialog"}
 		{/block}
 	</body>
 </html>

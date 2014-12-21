@@ -1,0 +1,10 @@
+#bodyframe {
+	display:block;
+	position: absolute;
+	top: 120px;
+	left: 10%;
+	width:50%;
+	min-height: 80%;
+	border-radius: 12px;
+	background-color: #fff;
+}
