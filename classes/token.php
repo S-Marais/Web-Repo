@@ -6,7 +6,7 @@ class Token
 	{
 		Session::delete('token');
 		if ($user->isLoadedObject()) {
-			return Session::put('token', MD5($user->id_profile._COOKIE_KEY_.$user->id));
+			return Session::put('token', MD5($user->id_profile.$user->hash_key.$user->id));
 		} else {
 			return '';
 		}

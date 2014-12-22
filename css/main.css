@@ -94,3 +94,10 @@ label {
 	text-align: center;
 	padding:64px;
 }
+
+.required {
+	display:none;
+	color:red;
+	font-family: sans-serif, Arial, Verdana;
+	font-size: 12px;
+}

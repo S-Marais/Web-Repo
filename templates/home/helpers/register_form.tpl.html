@@ -4,29 +4,34 @@
 		<tr>
 			<td><label>I am a</label></td>
 			<td>
-				<select name="profile">
+				<select name="id_profile">
 					<option value="0">Choose a profile</option>
 					<option value="1">Student</option>
 					<option value="2">Recruiter</option>
 				</select>
 			</td>
 		</tr>
+		<tr class="required input_id_profile"><td colspan="2">* You must pick a profile.</td></tr>
 		<tr>
 			<td><label>Firstname</label></td>
 			<td><input type="text" name="firstname" /></td>
 		</tr>
+		<tr class="required input_firstname"><td colspan="2">* Your firstname must be at least 2 characters long.</td></tr>
 		<tr>
 			<td><label>Lastname</label></td>
 			<td><input type="text" name="lastname" /></td>
 		</tr>
+		<tr class="required input_lastname"><td colspan="2">* Your lastname must be at least 2 characters long.</td></tr>
 		<tr>
 			<td><label>Email</label></td>
 			<td><input type="text" name="email" /></td>
 		</tr>
+		<tr class="required input_email"><td colspan="2">* Your email must be valid.</td></tr>
 		<tr>
 			<td><label>Password</label></td>
 			<td><input type="password" name="password" /></td>
 		</tr>
+		<tr class="required input_password"><td colspan="2">* Your password must be secure</td></tr>
 	</table><br />
 	<input id="register" type="submit" value="Register" />
 </form>

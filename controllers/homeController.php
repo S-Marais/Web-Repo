@@ -26,19 +26,23 @@ class HomeController extends Controller
 
 	public function processRegisterUser()
 	{
-		if (Token::isValid($this->context)) {
-			$email = Tools::getValue('email');
-			$profile = Tools::getValue('profile');
-			$firstname = Tools::getValue('firstname');
-			$lastname = Tools::getValue('lastname');
-			$password = Tools::getValue('password');
+		$email = Tools::getValue('email');
+		$id_profile = Tools::getValue('id_profile');
+		$firstname = Tools::getValue('firstname');
+		$lastname = Tools::getValue('lastname');
+		$password = Tools::getValue('password');
 
-			$user = new User();
-			$user->email = $email;
-			$user->profile = $profile;
-			$user->firstname = $firstname;
-			$user->lastname = $lastname;
-			$user->password = MD5(_SECURE_KEY_.$password);
+		$user = new User();
+		$user->firstname = $firstname;
+		$user->lastname = $lastname;
+		$user->email = $email;
+		$user->id_profile = $id_profile;
+		$user->password = $password;
+		$invalid_rows = Validate::isInvalidObject($user);
+
+		if (!$invalid_rows) {
+			$user->key_hash = MD5(uniqid());
+			$user->password = MD5(_SECURE_KEY_.$password.$user->key_hash);
 			$user->save();
 			die (json_encode(array(
 				"result" => true,
@@ -47,7 +51,8 @@ class HomeController extends Controller
 		}
 		die (json_encode(array(
 			"result" => false,
-			"error" => 'Nope!',
+			"error" => 'Invalid values submited.',
+			"invalid_inputs" => $invalid_rows,
 		)));
 	}
 

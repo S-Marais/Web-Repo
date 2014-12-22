@@ -61,7 +61,7 @@ $(document).ready(function () {
 			dataType: "json",
 			data: {
 				action: 'RegisterUser',
-				profile: $('input[name="profile"]').val(),
+				id_profile: $('select[name="id_profile"]').val(),
 				firstname: $('input[name="firstname"]').val(),
 				lastname: $('input[name="lastname"]').val(),
 				email: $('input[name="email"]').val(),
@@ -73,8 +73,10 @@ $(document).ready(function () {
 					$('#cover').data('closable', true);
 					$('.dialog').text(data.msg);
 				} else {
-					$('#cover').data('closable', true);
-					$('.dialog').text(data.error);
+					$('.required').hide();
+					data.invalid_inputs.forEach(function (name) {
+						$('.required.input_'+name).show();
+					});
 				}
 			},
 			error: function() {

@@ -15,3 +15,5 @@ Enable some errors display<br/>
 Cookie class imported and Context class created.<br/>
 <b>--- 20.12.2014 ---</b><br/>
 Context class improved token and session class created.<br/>
+<b>--- 21.12.2014 ---</b><br/>
+Advanced on the registering system and validation.<br/>

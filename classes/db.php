@@ -24,15 +24,13 @@ class Db
         return self::$instance;
 	}
 
-	private function connect()
+	public function connect()
 	{
 		$this->_link = mysqli_connect($this->_localhost, $this->_login, $this->_password, $this->_DB);
-		if (!$this->_link)
-			return false;
-		return true;
+		return $this->_link;
 	}
 
-	private function disconnect()
+	public function disconnect()
 	{
 		mysqli_close($this->_link);
 	}

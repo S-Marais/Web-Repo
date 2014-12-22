@@ -11,7 +11,7 @@
 	{
 		"ref" : "Core:0",
 		"up" : [
-			"CREATE TABLE IF NOT EXISTS cee_user (id_user INT NOT NULL AUTO_INCREMENT, firstname VARCHAR(32) NOT NULL, lastname VARCHAR(32) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(64) NOT NULL, id_profile INT NOT NULL, PRIMARY KEY (id_user));"
+			"CREATE TABLE IF NOT EXISTS cee_user (id_user INT NOT NULL AUTO_INCREMENT, firstname VARCHAR(32) NOT NULL, lastname VARCHAR(32) NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(32) NOT NULL, key_hash VARCHAR(32) NOT NULL, active INT NOT NULL DEFAULT 0, id_profile INT NOT NULL, PRIMARY KEY (id_user));"
 		],
 		"down" : [
 			"DROP TABLE IF EXISTS cee_user;"
@@ -21,11 +21,11 @@
 		"ref" : "Core:1",
 		"up" : [
 			"CREATE TABLE IF NOT EXISTS cee_profile (id_profile INT NOT NULL AUTO_INCREMENT, name VARCHAR(32) NOT NULL, PRIMARY KEY (id_profile));",
-			"INSERT INTO `cee_profile` (`name`) VALUES ('Admin'), ('Student'), ('Recruiter'), ('Association');"
+			"INSERT INTO `cee_profile` (`name`) VALUES ('Admin'), ('Student'), ('Recruiter');"
 		],
 		"down" : [
-			"DROP TABLE IF EXISTS cee_profile;",
-			"DELETE FROM `cee_profile` WHERE name IN('Admin', 'Student', 'Recruiter', 'Association');"
+			"DELETE FROM `cee_profile` WHERE name IN('Admin', 'Student', 'Recruiter');",
+			"DROP TABLE IF EXISTS cee_profile;"
 		]
 	}
 ]
