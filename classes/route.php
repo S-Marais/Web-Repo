@@ -34,7 +34,7 @@ class Route
 		$uri_get_param = isset($_GET['uri']) ? _ROOT_DIR_.$_GET['uri'] : _ROOT_DIR_;
 		foreach ($this->_uri_method as $key => $controller) {
 			if (preg_match("#^$key$#", $uri_get_param)) {
-				return new $controller();
+				return (new $controller())->run();
 			}
 		}
 		header('Location: '._ROOT_DIR_.'home');

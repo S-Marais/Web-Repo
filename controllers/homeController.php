@@ -5,14 +5,7 @@ class HomeController extends Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->tpl->assign('current_user', Context::getContext()->user);
-		$method = "process".$this->action;
-		$this->addJsVars(array('method' => $method));
-		if (method_exists($this, $method)) {
-			$this->$method();
-		} else {
-			$this->render();
-		}
+		$this->tpl->assign('current_user', $this->context->user);
 	}
 
 	public function setMedia()

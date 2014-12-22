@@ -10,25 +10,43 @@ class Controller
 	private $_css_files = array();
 	private $_js_vars = array();
 
+	/* Construct defines starting context rights and variables. */
 	public function __construct()
 	{
-		$this->action = Tools::getValue('action');
-		if (!$this->context)
-			$this->context = Context::getContext();
-		if (!$this->template_name)
-			$this->template_name = _TEMPLATE_DIR_.'/'.strtolower(preg_replace('/Controller$/', '', get_class($this))).'/view.tpl.html';
-		if (!$this->tpl)
-			$this->tpl = new tpl();
-		$this->setMedia();
+		$this->context = Context::getContext();
+		$this->tpl = new tpl();
 	}
 
-	/**
-	 * Function used to set css and js files
-	 */
+	/* Start: run->action->method->renderer */
+	public function run() {
+		$this->getAction();
+	}
+	public function getAction() {
+		if (!($this->action = Tools::getValue('action'))) {
+			$this->setMedia();
+			return $this->renderView();
+		}
+		$called_method = "process".$this->action;
+		if (method_exists($this, $called_method)) {
+			return $this->$called_method();
+		}
+		$this->setMedia();
+		return $this->renderView();
+	}
+
+	/* Function used to set base template, and include css and js files */
 	public function setMedia()
 	{
+		if (!$this->template_name)
+			$this->template_name = _TEMPLATE_DIR_.'/'
+				.strtolower(preg_replace('/Controller$/', '', get_class($this)))
+				.'/view.tpl.html';
 	}
 
+	/* The base method called before rendering the template */
+	protected function renderView() {
+		$this->render();
+	}
 	protected function render()
 	{
 		$this->tpl->assign('JS_FILES', $this->_js_files);
@@ -37,6 +55,7 @@ class Controller
 		$this->tpl->display($this->template_name);
 	}
 
+	/* Loads online google libraries for JQuery */
 	public function addJQuery() {
 		$this->_js_files[] = "//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js";
 	}
@@ -69,17 +88,20 @@ class Controller
 		}
 	}
 
+	/* This function is called to configure the helper tpl variables
+	 * Helpers are simple templates parts to be loaded dynamicly
+	 */
+	public function configHelper()
+	{
+	}
 	public function processRenderHelper()
 	{
 		$helper_name = Tools::getValue('helper_name');
-		$this->template_name = _TEMPLATE_DIR_.'/'.strtolower(preg_replace('/Controller$/', '', get_class($this))).'/helpers/'.$helper_name;
+		$this->template_name = _TEMPLATE_DIR_.'/'
+			.strtolower(preg_replace('/Controller$/', '', get_class($this)))
+			.'/helpers/'.$helper_name;
 		$this->tpl = new tpl();
 		$this->configHelper();
 		$this->tpl->display($this->template_name);
-	}
-
-	/* This function is called to configure the helper tpl variables */
-	public function configHelper()
-	{
 	}
 }
