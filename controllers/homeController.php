@@ -11,6 +11,7 @@ class HomeController extends Controller
 	public function setMedia()
 	{
 		$this->addJQuery();
+		$this->addJS('js/tools.js');
 		$this->addJS('js/log.js');
 		$this->addJsVars(array('token' => $this->context->new_token));
 		$this->addCSS('css/home.css');
