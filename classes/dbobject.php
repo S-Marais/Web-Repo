@@ -79,8 +79,8 @@ abstract class DbObject
 				return (bool)$value;
 			case self::_TYPE_STRING_:
 			case self::_TYPE_EMAIL_:
-				$value = mysqli_real_escape_string($this->instance_Db->connect(), $value);
-				$this->instance_Db->disconnect();
+				$this->instance_Db->checkLink();
+				$value = mysqli_real_escape_string($this->instance_Db->link, $value);
 				return $value;
 			default:
 				return $value;

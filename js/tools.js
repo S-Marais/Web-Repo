@@ -1,3 +1,7 @@
+/* JS file providing tools for ajax calls and more
+ * Dependencies :
+ * jQuery
+ */
 function ajaxCallHelper(url, helper_name, handler, is_dialog)
 {
 	$.ajax({
@@ -18,7 +22,7 @@ function ajaxCallHelper(url, helper_name, handler, is_dialog)
 		error: function() {
 			if (is_dialog)
 				$('#cover').data('closable', true);
-			handler.text('Sorry, an error occurred x_x');
+			handler.text('An error occurred X_X');
 		}
 	});
 	if (is_dialog)
@@ -42,7 +46,7 @@ function ajaxCallAction(url, action, data, callback, dataType)
 		},
 		error: function() {
 			$('#cover').show().data('closable', true);
-			$('.dialog').text('An error occurred');
+			$('.dialog').text('An error occurred X_X');
 		}
 	});
 }

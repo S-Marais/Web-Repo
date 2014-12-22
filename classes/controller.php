@@ -37,10 +37,12 @@ class Controller
 	/* Function used to set base template, and include css and js files */
 	public function setMedia()
 	{
+		$this->addJQuery();
+		$this->addJS('js/base_layout.js');
 		if (!$this->template_name)
 			$this->template_name = _TEMPLATE_DIR_.'/'
 				.strtolower(preg_replace('/Controller$/', '', get_class($this)))
-				.'/view.tpl.html';
+				.'/view.html';
 	}
 
 	/* The base method called before rendering the template */

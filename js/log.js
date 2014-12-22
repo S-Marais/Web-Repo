@@ -1,16 +1,19 @@
-
+/* JS file for handling login register and logout actions
+ * Dependencies :
+ * jQuery
+ * base_layout.js
+ * tools.js
+ */
 $(document).ready(function () {
-	$('#cover').hide();
-	$('#cover').data('closable', true);
 	$('.toolbar_log_button').on('click', function (e) {
 		e.preventDefault();
 		e.stopPropagation();
-		ajaxCallHelper("home", $(this).text().toLowerCase() + '_form.tpl.html', $('.dialog'), true);
+		ajaxCallHelper("home", $(this).text().toLowerCase() + '_form.html', $('.dialog'), true);
 	});
 	$('.toolbar_register_button').on('click', function (e) {
 		e.preventDefault();
 		e.stopPropagation();
-		ajaxCallHelper("home", 'register_form.tpl.html', $('.dialog'), true);
+		ajaxCallHelper("home", 'register_form.html', $('.dialog'), true);
 	});
 
 	$(document).on('click', '#register', function (e) {
@@ -52,13 +55,5 @@ $(document).ready(function () {
 				$('.dialog').text(data.error);
 			}
 		});
-	});
-
-	$(document).on('click', '#cover,.dialog', function (e) {
-		e.preventDefault();
-		e.stopPropagation();
-		if ($('#cover').data('closable') == true) {
-			$('#cover').hide();
-		}
 	});
 });

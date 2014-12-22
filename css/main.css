@@ -101,3 +101,13 @@ label {
 	font-family: sans-serif, Arial, Verdana;
 	font-size: 12px;
 }
+
+.escape_info {
+	position:absolute;
+	color:grey;
+	font-family: sans-serif, Arial, Verdana;
+	font-size: 12px;
+	bottom:12px;
+	margin-left:auto;
+	margin-right:auto;
+}

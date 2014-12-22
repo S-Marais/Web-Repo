@@ -1,5 +1,7 @@
 <?php
 
+/* This class helps formating sql query strings faster and with more flexibility
+ * */
 class DbQuery
 {
 	private $_select;
