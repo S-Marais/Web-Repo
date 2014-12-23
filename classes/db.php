@@ -67,6 +67,20 @@ class Db
 
 	/* @TODO try catch here */
 	// LIMIT the result to one using 'LIMIT 1' statement and return the row.
+	public function getValue($sql)
+	{
+		$this->checkLink();
+		$result = mysqli_query($this->link, $sql."\nLIMIT 1;");
+		if ($result && mysqli_num_rows($result) > 0) {
+			$row = $result->fetch_array(MYSQLI_ASSOC);
+			$result->free();
+			return reset($row);
+		}
+		return $result;
+	}
+
+	/* @TODO try catch here */
+	// LIMIT the result to one using 'LIMIT 1' statement and return the row.
 	public function getRow($sql)
 	{
 		$this->checkLink();

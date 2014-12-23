@@ -21,14 +21,18 @@ class User extends DbObject
 		'id_profile' => array(self::_TYPE_INT_, 1),
 	);
 
-	static public function checkPassword($password, $id_user)
+	static public function loadByEmail($email)
 	{
 		$query = new DbQuery();
 		$query->select('id_user');
 		$query->from('user', 'u');
-		$query->where('u.id_user == '.(int)$id_user);
-		$query->where('u.password == "'.$password.'"');
-		return !!Db::getInstance()->getRow();
+		$query->where('u.email = "'.Tools::sqlEscape($email).'"');
+		return new User(Db::getInstance()->getValue($query));
+	}
+
+	public function checkPassword($password)
+	{
+		return $this->password == MD5(_SECURE_KEY_.$password.$this->key_hash);
 	}
 
 	public function isLoggedIn()

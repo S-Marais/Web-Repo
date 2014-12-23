@@ -19,6 +19,13 @@ class Tools
 		return preg_replace("/'/", "\'", $string);
 	}
 
+	static public function sqlEscape($string)
+	{
+		$instance = Db::getInstance();
+		$instance->checkLink();
+		return mysqli_real_escape_string($instance->link, $string);
+	}
+
 	static public function redirect($url, $domain_name = true)
 	{
 		header('Location: '._ROOT_DIR_.$url);

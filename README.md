@@ -17,3 +17,5 @@ Cookie class imported and Context class created.<br/>
 Context class improved token and session class created.<br/>
 <b>--- 21.12.2014 ---</b><br/>
 Advanced on the registering system and validation.<br/>
+<b>--- 22.12.2014 ---</b><br/>
+Reworked Db and initiated tools.js checks almost done for login.<br/>

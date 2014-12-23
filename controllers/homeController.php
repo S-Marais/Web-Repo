@@ -51,7 +51,10 @@ class HomeController extends Controller
 
 	public function processLoginUser()
 	{
-		if (Token::isValid($this->context)) {
+		$email = Tools::getValue('email');
+		$password = Tools::getValue('password');
+		$user = User::loadByEmail($email);
+		if ($user->checkPassword($password)) {
 			die (json_encode(array(
 				"result" => true,
 				"msg" => "Its something!",
