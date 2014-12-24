@@ -55,9 +55,13 @@ class HomeController extends Controller
 		$password = Tools::getValue('password');
 		$user = User::loadByEmail($email);
 		if ($user->checkPassword($password)) {
+			$cookie = new Cookie('cee');
+			$cookie->__set('id_user', $user->id);
+			$cookie->__set('password', $user->password);
+			$cookie->write();
 			die (json_encode(array(
 				"result" => true,
-				"msg" => "Its something!",
+				"msg" => "Wellcome back!",
 			)));
 		}
 		die (json_encode(array(

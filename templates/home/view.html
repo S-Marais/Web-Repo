@@ -15,8 +15,8 @@
 			</div>
 		</div>
 		<div class="top_right_tools">
-			<a href="" class="toolbar_log_button">{if $user && $user->isLoggedIn()}Logout{else}Login{/if}</a>
-			{if !$user || !$user->isLoggedIn()}<a href="" class="toolbar_register_button">Register</a>{/if}
+			<a href="" class="toolbar_log_button">{if $current_user && $current_user->logged}Logout{else}Login{/if}</a>
+			{if !$current_user || !$current_user->logged}<a href="" class="toolbar_register_button">Register</a>{/if}
 		</div>
 	</div>
 {/block}

@@ -97,7 +97,7 @@ abstract class DbObject
 		if (!$this->_table_name)
 			$this->_table_name = strtolower(get_class($this));
 		$this->instance_Db = Db::getInstance();
-		if ($id) {
+		if ((int)$id) {
 			$this->id = $id;
 			$query = new DbQuery();
 			foreach ($this->_definition as $column => $type) {

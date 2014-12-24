@@ -8,7 +8,11 @@ $(document).ready(function () {
 	$('.toolbar_log_button').on('click', function (e) {
 		e.preventDefault();
 		e.stopPropagation();
-		ajaxCallHelper("home", $(this).text().toLowerCase() + '_form.html', $('.dialog'), true);
+		if ($(this).text() == 'Login') {
+			ajaxCallHelper("home", $(this).text().toLowerCase() + '_form.html', $('.dialog'), true);
+		} else {
+			alert('logout pas fait lel');
+		}
 	});
 	$('.toolbar_register_button').on('click', function (e) {
 		e.preventDefault();
@@ -50,6 +54,8 @@ $(document).ready(function () {
 			if (data.result) {
 				$('#cover').data('closable', true);
 				$('.dialog').text(data.msg);
+				$('.toolbar_log_button').text('Logout');
+				$('.toolbar_register_button').remove();
 			} else {
 				$('#cover').data('closable', true);
 				$('.dialog').text(data.error);

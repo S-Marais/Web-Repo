@@ -9,6 +9,7 @@ class User extends DbObject
 	public $key_hash;
 	public $id_profile;
 	public $active;
+	public $logged = false;
 
 	protected $_table_name = 'user';
 	public $_definition = array(
@@ -27,15 +28,16 @@ class User extends DbObject
 		$query->select('id_user');
 		$query->from('user', 'u');
 		$query->where('u.email = "'.Tools::sqlEscape($email).'"');
-		return new User(Db::getInstance()->getValue($query));
+		return new User((int)Db::getInstance()->getValue($query));
 	}
 
-	public function checkPassword($password)
+	public function checkPassword($password, $encrypted = false)
 	{
+		if (!$password)
+			return false;
+		if ($encrypted) {
+			return $this->password == $password;
+		}
 		return $this->password == MD5(_SECURE_KEY_.$password.$this->key_hash);
-	}
-
-	public function isLoggedIn()
-	{
 	}
 }

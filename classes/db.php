@@ -62,7 +62,8 @@ class Db
 			$result->free();
 			return $rows;
 		}
-		return $result;
+		$result->free();
+		return null;
 	}
 
 	/* @TODO try catch here */
@@ -76,7 +77,8 @@ class Db
 			$result->free();
 			return reset($row);
 		}
-		return $result;
+		$result->free();
+		return null;
 	}
 
 	/* @TODO try catch here */
@@ -90,7 +92,8 @@ class Db
 			$result->free();
 			return $row;
 		}
-		return $result;
+		$result->free();
+		return null;
 	}
 
 	/* @TODO try catch here */
