@@ -6,12 +6,19 @@ $(document).ready(function () {
 	$('#cover').hide();
 	$('#cover').data('closable', true);
 
-	$(document).on('click', '#cover,.dialog', function (e) {
+	$(document).on('click', '.dialog', function (e) {
 		e.preventDefault();
 		e.stopPropagation();
 		if ($('#cover').data('closable') == true) {
 			$('#cover').hide();
 		}
+	});
+
+	$(document).on('click', '#cover', function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+		$('#cover').hide();
+		$('#cover').data('closable', true);
 	});
 
 	/* Close dialog on escape */

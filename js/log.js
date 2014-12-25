@@ -5,16 +5,24 @@
  * tools.js
  */
 $(document).ready(function () {
-	$('.toolbar_log_button').on('click', function (e) {
+	$('.top_right_tools').on('click', '.toolbar_log_button', function (e) {
 		e.preventDefault();
 		e.stopPropagation();
 		if ($(this).text() == 'Login') {
 			ajaxCallHelper("home", $(this).text().toLowerCase() + '_form.html', $('.dialog'), true);
 		} else {
-			alert('logout pas fait lel');
+			ajaxCallAction("home", 'LogoutUser', null, function(data) {
+				if (data.result) {
+					$('.toolbar_log_button').text('Login');
+					elem = $('<a href=""></a>')
+						.addClass('toolbar_register_button')
+						.text('Register');
+					$('.top_right_tools').append(elem);
+				}
+			});
 		}
 	});
-	$('.toolbar_register_button').on('click', function (e) {
+	$('.top_right_tools').on('click', '.toolbar_register_button', function (e) {
 		e.preventDefault();
 		e.stopPropagation();
 		ajaxCallHelper("home", 'register_form.html', $('.dialog'), true);

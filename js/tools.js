@@ -34,7 +34,8 @@ function ajaxCallAction(url, action, data, callback, dataType)
 	var merged_data = {'action':action,'token':token};
 	if (!dataType)
 		dataType = 'json';
-	$.extend(true, merged_data, data);
+	if (data != null)
+		$.extend(true, merged_data, data);
 	$.ajax({
 		ajax: 1,
 		type: "POST",

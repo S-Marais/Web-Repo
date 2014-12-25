@@ -19,3 +19,7 @@ Context class improved token and session class created.<br/>
 Advanced on the registering system and validation.<br/>
 <b>--- 22.12.2014 ---</b><br/>
 Reworked Db and initiated tools.js checks almost done for login.<br/>
+<b>--- 23.12.2014 ---</b><br/>
+Reworked Cookie class and login is working.<br/>
+<b>--- 24.12.2014 ---</b><br/>
+Logout is working now needs to send email for activation.<br/>

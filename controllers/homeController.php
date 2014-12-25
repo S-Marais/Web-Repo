@@ -69,4 +69,12 @@ class HomeController extends Controller
 			"error" => 'Nope!',
 		)));
 	}
+
+	public function processLogoutUser()
+	{
+		$this->context->cookie->delete();
+		die (json_encode(array(
+			"result" => true,
+		)));
+	}
 }

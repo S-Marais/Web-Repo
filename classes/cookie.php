@@ -130,7 +130,8 @@ Class Cookie
 		foreach ($this->_content as $key => $value) {
 			$cookie .= $key.'|'.$value.'~';
 		}
-		$cookie .= 'checksum|'.crc32(_COOKIE_IV_.$cookie);
+		if ($cookie)
+			$cookie .= 'checksum|'.crc32(_COOKIE_IV_.$cookie);
 		$this->_modified = false;
 		return $this->_setCookie($cookie);
 	}
