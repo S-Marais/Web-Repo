@@ -28,7 +28,7 @@ label {
 
 .inner {
 	width: 80%;
-	min-width: 700px;
+	min-width: 800px;
 	margin: auto;
 	position: relative;
 	padding: 1px;
@@ -63,7 +63,7 @@ label {
 }
 .top_menu {
 	display: inline-block;
-	margin-left: calc(50% - 192px);
+	margin-left: calc(50% - 280px);
 	padding: 10px 10px;
 }
 
@@ -110,4 +110,17 @@ label {
 	bottom:12px;
 	margin-left:auto;
 	margin-right:auto;
+}
+.top_right_tools a+a {
+	border-left: 1px solid #d0d8dc;
+}
+.top_right_tools a {
+	border-radius:6px;
+	text-decoration: none;
+	font-weight:bold;
+	padding: 5px 10px;
+	color: #568;
+}
+.top_right_tools a:hover {
+	color: #89b;
 }

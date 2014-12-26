@@ -32,6 +32,9 @@ class HomeController extends Controller
 		$user->id_profile = $id_profile;
 		$user->password = $password;
 		$invalid_rows = Validate::isInvalidObject($user);
+		if (User::loadByEmail($email)->isLoadedObject()) {
+			$invalid_rows[] = 'user_exists';
+		}
 
 		if (!$invalid_rows) {
 			$user->key_hash = MD5(uniqid());
@@ -44,7 +47,6 @@ class HomeController extends Controller
 		}
 		die (json_encode(array(
 			"result" => false,
-			"error" => 'Invalid values submited.',
 			"invalid_inputs" => $invalid_rows,
 		)));
 	}
