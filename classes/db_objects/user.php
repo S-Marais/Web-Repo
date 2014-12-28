@@ -22,6 +22,16 @@ class User extends DbObject
 		'id_profile' => array(self::_TYPE_INT_, 1),
 	);
 
+	public function checkPassword($password, $encrypted = false)
+	{
+		if (!$password)
+			return false;
+		if ($encrypted) {
+			return $this->password == $password;
+		}
+		return $this->password == MD5(_SECURE_KEY_.$password.$this->key_hash);
+	}
+
 	static public function loadByEmail($email)
 	{
 		$query = new DbQuery();
@@ -31,13 +41,19 @@ class User extends DbObject
 		return new User((int)Db::getInstance()->getValue($query));
 	}
 
-	public function checkPassword($password, $encrypted = false)
+	static public function loadMembers()
 	{
-		if (!$password)
-			return false;
-		if ($encrypted) {
-			return $this->password == $password;
+		$query = new DbQuery();
+		$query->select('id_user');
+		$query->from('user', 'u');
+		$query->where('u.id_profile != 1');
+		$query->orderBy('u.id_user DESC');
+		$members = Db::getInstance()->getRows($query);
+		if ($members) {
+			foreach ($members as $key => $value) {
+				$members[$key] = new User($value['id_user']);
+			}
 		}
-		return $this->password == MD5(_SECURE_KEY_.$password.$this->key_hash);
+		return $members;
 	}
 }

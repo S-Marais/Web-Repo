@@ -8,8 +8,7 @@ class Route
 	{
 		$this->_uri_method = array(
 			_ROOT_DIR_.'home'		=> 'HomeController',
-			_ROOT_DIR_.'student'	=> 'StudentController',
-			_ROOT_DIR_.'recruiter'	=> 'RecruiterController',
+			_ROOT_DIR_.'profile'	=> 'ProfileController',
 			_ROOT_DIR_.'association'=> 'AssociationController',
 		);
 	}
@@ -37,6 +36,6 @@ class Route
 				return (new $controller())->run();
 			}
 		}
-		header('Location: '._ROOT_DIR_.'home');
+		header('Location: /'._ROOT_DIR_.'home');
 	}
 }

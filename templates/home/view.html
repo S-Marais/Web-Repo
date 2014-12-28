@@ -10,21 +10,27 @@
 			<div id="site_logo"></div>
 			<div class="top_menu">
 				<a href="">Associations</a>
-				<a href="">Students</a>
+				<a href="">Members</a>
 				<a href="">Offers</a>
 				<a href="">Companies</a>
 			</div>
 		</div>
 		<div class="top_right_tools">
-			<a href="" class="toolbar_log_button">{if $current_user && $current_user->logged}Logout{else}Login{/if}</a>
-			{if !$current_user || !$current_user->logged}<a href="" class="toolbar_register_button">Register</a>{/if}
+		{if $current_user && $current_user->logged}
+			<a href="" class="toolbar_logout_button">Logout</a><a href="" class="toolbar_manage_button">Manage</a>
 		</div>
+		{include file='./helpers/manage_menu.html'}
+		{else}
+			<a href="" class="toolbar_login_button">Login</a><a href="" class="toolbar_register_button">Register</a>
+		</div>
+		{/if}
 	</div>
 {/block}
 
 {block name="content"}
 	<div id="content">
 		<div id="main">
+			{include file='./helpers/members_list.html'}
 		</div>
 		<div id="sidebar">
 			<div class="addbtn" id="new_association">New Association</div>

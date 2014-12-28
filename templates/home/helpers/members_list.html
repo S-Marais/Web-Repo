@@ -1,0 +1,12 @@
+<ul>
+{foreach $members as $member}
+	<li>
+		<div class="inner_info">
+			<img class="avatar" src="img/avatar.jpg" />
+			<div class="info">
+				<a href="">{$member->firstname} {$member->lastname}</a>
+			</div>
+		</div>
+	</li>
+{/foreach}
+</ul>

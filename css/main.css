@@ -1,31 +1,34 @@
 body {
 	background-color: #d0d8dc;
+	font-family: sans-serif, Arial, Verdana;
 	margin: 0;
+	color: #70787c;
 }
-
+a:-webkit-any-link,
+a:link {
+	text-decoration: none;
+	color: inherit;
+}
 form {
 	margin-bottom: 0;
 }
-
 table {
 	display: inline-block;
 }
-
 label {
 	color: #70787c;
 }
-select {
-}
 textarea, input, select {
 	border-radius: 6px;
+	color: #666;
 	background-color: #d0d8dc;
-	font-family: sans-serif, Arial, Verdana;
-	border:none;
-	margin:4px;
+	border: none;
+	margin: 4px;
 	padding: 6px 12px;
 }
 textarea:focus, input:focus, select:focus {
 	outline: none;
+	color: #222;
 	box-shadow: 0 0 5px #248;
 }
 input[type=submit]:focus {
@@ -36,13 +39,46 @@ input[type=submit] {
 	border-radius: 6px;
 	background-color: #f66;
 	color: #fff;
-	font-family: sans-serif, Arial, Verdana;
 	font-weight: bold;
-	border:none;
+	border: none;
 	padding: 6px 16px;
-	margin:12px;
+	margin: 12px;
 	outline: none;
 }
+
+
+/* LIST */
+ul {
+	margin-top: 20px;
+}
+li+li {
+	border-top: 1px solid #e0e8ec;
+}
+li {
+	display: inline-block;
+	width: 95%;
+}
+.info {
+	display: block;
+	position: absolute;
+	width: 320px;
+	margin-left: 80px;
+	margin-top: 6px;
+}
+.inner_info {
+	position: relative;
+	padding: 20px;
+	min-height: 64px;
+}
+.avatar {
+	position: absolute;
+	width:64px;
+	height:64px;
+	background-color: #d0d8dc;
+	border-radius: 20px 20px 0px 20px;
+	border: none;
+}
+
 
 /* CONTENT */
 #content {
@@ -55,8 +91,8 @@ input[type=submit] {
 	display: block;
 	width: 689px;
 	float:left;
-	min-height: 689px;
-	border-radius: 0px 12px 0px 12px;
+	min-height: 24px;
+	border-radius: 0px 24px 0px 24px;
 	background-color: #fff;
 	margin-bottom:20px;
 }
@@ -73,7 +109,7 @@ input[type=submit] {
 	width: 100%;
 	min-height: 320px;
 	margin-bottom: 20px;
-	border-radius: 0px 12px 0px 12px;
+	border-radius: 0px 24px 0px 24px;
 	background-color: #fff;
 }
 .addbtn {
@@ -86,7 +122,6 @@ input[type=submit] {
 	background-color: #48f;
 	font-weight: bold;
 	color:#fff;
-	font-family: sans-serif, Arial, Verdana;
 	font-size: 20px;
 	text-align: center;
 }
@@ -105,9 +140,9 @@ input[type=submit] {
 	min-height: 80px;
 	width: 100%;
 	color: #d0d8dc;
-	-webkit-box-shadow: 0 8px 6px -6px #888;
-	   -moz-box-shadow: 0 8px 6px -6px #888;
-	        box-shadow: 0 8px 6px -6px #888;
+	-webkit-box-shadow: 0 8px 6px -6px #999;
+	   -moz-box-shadow: 0 8px 6px -6px #999;
+	        box-shadow: 0 8px 6px -6px #999;
 }
 .inner {
 	width: 80%;
@@ -135,7 +170,6 @@ input[type=submit] {
 .top_menu a {
 	display: inline-block;
 	color: #568;
-	font-family: sans-serif, Arial, Verdana;
 	font-size: 24px;
 	font-weight: bold;
 	text-decoration: none;
@@ -147,13 +181,11 @@ input[type=submit] {
 	margin-left: calc(50% - 280px);
 	padding: 10px 10px;
 }
-
 .top_right_tools {
 	display: block;
-	height: 48px;
 	position: absolute;
-	top: 10px;
-	right: 16px;
+	top: 16px;
+	right: 6px;
 }
 .top_right_tools a+a {
 	border-left: 1px solid #d0d8dc;
@@ -167,7 +199,49 @@ input[type=submit] {
 .top_right_tools a:hover {
 	color: #89b;
 }
-
+.top_manage_menu .menu_head .avatar {
+	top: 8px;
+	left:16px;
+	width:32px;
+	height:32px;
+}
+.top_manage_menu .menu_head {
+	border-radius: 6px 6px 0px 0px;
+	padding: 16px 16px;
+	margin-left: 48px;
+}
+.top_manage_menu .menu_head:hover {
+	color:#fff;
+}
+.top_manage_menu .menu_option {
+	padding: 6px 16px;
+	border-top: 1px solid #89b;
+}
+.top_manage_menu .menu_option:hover {
+	background-color: #89b;
+	color:#fff;
+}
+.top_manage_menu .menu_option:last-child {
+	border-radius: 0px 0px 6px 6px;
+}
+.top_manage_menu {
+	display: none;
+	position: absolute;
+	background-color: #568;
+	top: 64px;
+	right: 16px;
+	border-radius: 6px;
+}
+.top_arrow {
+	position: absolute;
+	top:-16px;
+	right: 16px;
+	width: 0;
+	height: 0;
+	border-right: 16px solid transparent;
+	border-bottom: 16px solid #568;
+	border-left: 16px solid transparent;
+}
 
 /* COVER */
 #cover {
@@ -184,9 +258,8 @@ input[type=submit] {
 	width: 360px;
 	border-radius: 0 92px 0 92px;
 	background-color: #fff;
-	font-family: sans-serif, Arial, Verdana;
 	text-align: center;
-	padding:48px;
+	padding:32px;
 	color: #568;
 	font-size:24px;
 	-webkit-box-shadow: 0 8px 6px -6px #333;
@@ -196,13 +269,11 @@ input[type=submit] {
 .required {
 	display: none;
 	color: #f66;
-	font-family: sans-serif, Arial, Verdana;
 	font-size: 12px;
 }
 .escape_info {
 	position:absolute;
 	color:grey;
-	font-family: sans-serif, Arial, Verdana;
 	font-size: 12px;
 	bottom:12px;
 }

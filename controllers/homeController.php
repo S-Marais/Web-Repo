@@ -6,6 +6,7 @@ class HomeController extends Controller
 	{
 		parent::__construct();
 		$this->tpl->assign('current_user', $this->context->user);
+		$this->tpl->assign('members', User::loadMembers());
 	}
 
 	public function setMedia()
@@ -13,14 +14,13 @@ class HomeController extends Controller
 		parent::setMedia();
 		$this->addJS('js/tools.js');
 		$this->addJS('js/log.js');
+		$this->addJS('js/top_manage_menu.js');
 		$this->addJsVars(array('token' => $this->context->new_token));
-		$this->addCSS('css/home.css');
 	}
 
 	public function processRegisterUser()
 	{
 		$email = Tools::getValue('email');
-		$id_profile = Tools::getValue('id_profile');
 		$firstname = Tools::getValue('firstname');
 		$lastname = Tools::getValue('lastname');
 		$password = Tools::getValue('password');
@@ -28,8 +28,8 @@ class HomeController extends Controller
 		$user = new User();
 		$user->firstname = $firstname;
 		$user->lastname = $lastname;
-		$user->email = $email;
-		$user->id_profile = $id_profile;
+		$user->email = strtolower($email);
+		$user->id_profile = 2;
 		$user->password = $password;
 		$invalid_rows = Validate::isInvalidObject($user);
 		if (User::loadByEmail($email)->isLoadedObject()) {
@@ -53,7 +53,7 @@ class HomeController extends Controller
 
 	public function processLoginUser()
 	{
-		$email = Tools::getValue('email');
+		$email = strtolower(Tools::getValue('email'));
 		$password = Tools::getValue('password');
 		$user = User::loadByEmail($email);
 		if ($user->checkPassword($password)) {
@@ -63,12 +63,11 @@ class HomeController extends Controller
 			$cookie->write();
 			die (json_encode(array(
 				"result" => true,
-				"msg" => "Wellcome back!",
 			)));
 		}
 		die (json_encode(array(
 			"result" => false,
-			"error" => 'Nope!',
+			"error" => '<b>We are sorry :</b><br /><br />Login and password did not match!',
 		)));
 	}
 

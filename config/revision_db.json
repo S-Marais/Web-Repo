@@ -21,10 +21,10 @@
 		"ref" : "Core:1",
 		"up" : [
 			"CREATE TABLE IF NOT EXISTS cee_profile (id_profile INT NOT NULL AUTO_INCREMENT, name VARCHAR(32) NOT NULL, PRIMARY KEY (id_profile));",
-			"INSERT INTO `cee_profile` (`name`) VALUES ('Admin'), ('Student'), ('Recruiter');"
+			"INSERT INTO `cee_profile` (`name`) VALUES ('Admin'), ('Members'), ('Premium');"
 		],
 		"down" : [
-			"DELETE FROM `cee_profile` WHERE name IN('Admin', 'Student', 'Recruiter');",
+			"DELETE FROM `cee_profile` WHERE name IN('Admin', 'Members', 'Premium');",
 			"DROP TABLE IF EXISTS cee_profile;"
 		]
 	}

@@ -28,4 +28,10 @@ $(document).ready(function () {
 			$('#cover').data('closable', true);
 		}
 	});
+	/* Close menu on click elsewhere */
+	$(document).on('click', function (e) {
+		if(!$(e.target).is('.top_manage_menu') && !$(e.target).parents('.top_manage_menu').is('.top_manage_menu')) {
+			$('.top_manage_menu').hide();
+		}
+	});
 });

@@ -2,7 +2,7 @@
  * Dependencies :
  * jQuery
  */
-function ajaxCallHelper(url, helper_name, handler, is_dialog)
+function ajaxCallHelper(url, helper_name, handler, is_dialog, append)
 {
 	$.ajax({
 		ajax: 1,
@@ -17,12 +17,18 @@ function ajaxCallHelper(url, helper_name, handler, is_dialog)
 		success: function(data) {
 			if (is_dialog)
 				$('#cover').data('closable', false);
-			handler.html(data);
+			if (append)
+				handler.append(data);
+			else
+				handler.html(data);
 		},
 		error: function() {
 			if (is_dialog)
 				$('#cover').data('closable', true);
-			handler.text('An error occurred X_X');
+			if (append)
+				handler.append('An error occurred X_X');
+			else
+				handler.text('An error occurred X_X');
 		}
 	});
 	if (is_dialog)

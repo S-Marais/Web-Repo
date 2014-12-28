@@ -2,6 +2,13 @@
 
 class Tools
 {
+	static public function isSubmit($label) {
+		if (isset($_GET[$label]) || isset($_POST[$label])) {
+			return true;
+		}
+		return false;
+	}
+
 	static public function getValue($label)
 	{
 		if (!empty($_POST[$label])) {
