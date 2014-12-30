@@ -7,6 +7,7 @@ class HomeController extends Controller
 		parent::__construct();
 		$this->tpl->assign('current_user', $this->context->user);
 		$this->tpl->assign('members', User::loadMembers());
+		$this->tpl->assign('my_profile_link', _DOMAIN_.'/profile&edit&id='.$this->context->user->id);
 	}
 
 	public function setMedia()
@@ -14,7 +15,7 @@ class HomeController extends Controller
 		parent::setMedia();
 		$this->addJS('js/tools.js');
 		$this->addJS('js/log.js');
-		$this->addJS('js/top_manage_menu.js');
+		$this->addJS('js/home_menu.js');
 		$this->addJsVars(array('token' => $this->context->new_token));
 	}
 

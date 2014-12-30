@@ -7,6 +7,10 @@ class ProfileController extends Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->tpl->assign('current_user', $this->context->user);
+		$this->tpl->assign('members', User::loadMembers());
+		$this->tpl->assign('home_link', _DOMAIN_.'/home');
+
 		$this->profile_user = new User((int)Tools::getValue('id'));
 		if (Tools::isSubmit('edit')
 			&& $this->context->user->logged
@@ -17,5 +21,16 @@ class ProfileController extends Controller
 		} else if (Tools::isSubmit('edit') || !$this->profile_user->isLoadedObject()) {
 			Tools::redirect('home');
 		}
+	}
+	
+	public function setMedia()
+	{
+		parent::setMedia();
+		$this->addCSS('css/profile.css');
+		$this->addJS('js/tools.js');
+		$this->addJS('js/log.js');
+		$this->addJS('js/home_menu.js');
+		$this->addJS('js/profile.js');
+		$this->addJsVars(array('token' => $this->context->new_token));
 	}
 }

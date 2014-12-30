@@ -10,4 +10,11 @@ $(document).ready(function () {
 		e.stopPropagation();
 		$('.top_manage_menu').toggle();
 	});
+
+	$('#header .inner').on('click', '.menu_option',  function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+		if ($(this).data('href'))
+			window.location.href = $(this).data('href');
+	});
 });

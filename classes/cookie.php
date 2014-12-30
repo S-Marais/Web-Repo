@@ -108,9 +108,9 @@ Class Cookie
 			$time = 1;
 		}
 		if (PHP_VERSION_ID <= 50200) /* PHP version > 5.2.0 */
-			return setcookie($this->_name, $content, $time, $this->_path, _DOMAIN_, 0);
+			return setcookie($this->_name, $content, $time, $this->_path, '', 0);
 		else
-			return setcookie($this->_name, $content, $time, $this->_path, _DOMAIN_, 0, true);
+			return setcookie($this->_name, $content, $time, $this->_path, '', 0, true);
 	}
 
 	public function __destruct()

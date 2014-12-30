@@ -79,7 +79,7 @@ $(document).ready(function () {
 					.addClass('toolbar_manage_button')
 					.text('Manage');
 				$('.top_right_tools').append(elem);
-				ajaxCallHelper("home", 'manage_menu.html', $('#header'), false, true);
+				ajaxCallHelper("home", 'manage_menu.html', $('#header .inner'), false, true);
 			} else {
 				$('#cover').data('closable', true);
 				$('.dialog').html(data.error);

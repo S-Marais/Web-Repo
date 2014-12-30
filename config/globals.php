@@ -1,7 +1,7 @@
 <?php
 
 // Directories
-define('_DOMAIN_', '');
+define('_DOMAIN_', '//'.$_SERVER['SERVER_NAME']);
 define('_ROOT_DIR_', '');
 define('_IMAGE_DIR_', _ROOT_DIR_.'img');
 define('_CONFIG_DIR_', _ROOT_DIR_.'config');

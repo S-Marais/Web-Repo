@@ -4,16 +4,16 @@
 		<img class="avatar" src="img/avatar.jpg" />
 		Name Lastname
 	</div>
-	<div class="menu_option">
+	<div class="menu_option" {if isset($my_profile_link)}data-href="{$my_profile_link}"{/if}>
 		My profile
 	</div>
-	<div class="menu_option">
+	<div class="menu_option" {if isset($my_profile_link)}data-href="{$my_profile_link}&account"{/if}>
 		My account
 	</div>
-	<div class="menu_option">
+	<div class="menu_option" {if isset($my_profile_link)}data-href="{$my_profile_link}&privacy"{/if}>
 		My privacy
 	</div>
-	<div class="menu_option">
+	<div class="menu_option" {if isset($my_profile_link)}data-href="{$my_profile_link}&cart"{/if}>
 		My cart
 	</div>
 </div>

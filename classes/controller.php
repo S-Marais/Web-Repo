@@ -90,7 +90,7 @@ class Controller
 		}
 	}
 
-	/* This function is called to configure the helper tpl variables
+	/* This function is called to override or configure the helper tpl variables
 	 * Helpers are simple templates parts to be loaded dynamicly
 	 */
 	public function configHelper()
@@ -102,7 +102,6 @@ class Controller
 		$this->template_name = _TEMPLATE_DIR_.'/'
 			.strtolower(preg_replace('/Controller$/', '', get_class($this)))
 			.'/helpers/'.$helper_name;
-		$this->tpl = new tpl();
 		$this->configHelper();
 		$this->tpl->display($this->template_name);
 	}

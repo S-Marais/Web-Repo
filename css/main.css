@@ -145,7 +145,7 @@ li {
 	        box-shadow: 0 8px 6px -6px #999;
 }
 .inner {
-	width: 80%;
+	width: 60%;
 	min-width: 800px;
 	margin: auto;
 	position: relative;
@@ -157,7 +157,7 @@ li {
 	height: 48px;
 	position: absolute;
 	top: 10px;
-	left: 16px;
+	left: 0;
 	background:  url('/img/CEE.gif') no-repeat center;
 	background-size: 128px 48px;
 }
@@ -170,15 +170,15 @@ li {
 .top_menu a {
 	display: inline-block;
 	color: #568;
-	font-size: 24px;
+	font-size: 18px;
 	font-weight: bold;
 	text-decoration: none;
 	text-align: left;
-	padding: 10px 10px;
+	padding: 12px 10px;
 }
 .top_menu {
 	display: inline-block;
-	margin-left: calc(50% - 280px);
+	margin-left: calc(50% - 240px);
 	padding: 10px 10px;
 }
 .top_right_tools {
@@ -211,6 +211,7 @@ li {
 	margin-left: 48px;
 }
 .top_manage_menu .menu_head:hover {
+	cursor: pointer;
 	color:#fff;
 }
 .top_manage_menu .menu_option {
@@ -218,6 +219,7 @@ li {
 	border-top: 1px solid #89b;
 }
 .top_manage_menu .menu_option:hover {
+	cursor: pointer;
 	background-color: #89b;
 	color:#fff;
 }
