@@ -1,11 +1,12 @@
 #main_form {
 	display: block;
-	width: 716px;
+	width: 670px;
 	float:left;
 	min-height: 1224px;
 	background-color: #fff;
 	margin-bottom:20px;
 	border-radius: 0px 24px 0px 24px;
+	padding:24px;
 }
 #right_arrow {
 	position:absolute;

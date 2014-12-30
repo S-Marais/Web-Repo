@@ -7,21 +7,32 @@
 				<img class="avatar" src="img/avatar.jpg" />
 				Name Lastname
 			</div>
-			<div class="menu_option">
+			<div class="menu_option" data-href="{$my_profile_link}" data-helper="profile_form">
 				My profile
-				<div id="right_arrow"></div>
+				{if !Tools::isSubmit('account')
+					&& !Tools::isSubmit('privacy')
+					&& !Tools::isSubmit('cart')
+					}<div id="right_arrow"></div>{/if}
 			</div>
-			<div class="menu_option">
+			<div class="menu_option" data-href="{$my_profile_link}&account" data-helper="account_form">
 				My account
+				{if Tools::isSubmit('account')}<div id="right_arrow"></div>{/if}
 			</div>
-			<div class="menu_option">
+			<div class="menu_option" data-href="{$my_profile_link}&privacy" data-helper="privacy_form">
 				My privacy
+				{if Tools::isSubmit('privacy')}<div id="right_arrow"></div>{/if}
 			</div>
-			<div class="menu_option">
+			<div class="menu_option" data-href="{$my_profile_link}&cart" data-helper="cart_view">
 				My cart
+				{if Tools::isSubmit('cart')}<div id="right_arrow"></div>{/if}
 			</div>
 		</div>
 		<div id="main_form">
+		{if !Tools::isSubmit('account')
+			&& !Tools::isSubmit('privacy')
+			&& !Tools::isSubmit('cart')}
+			{include file='./helpers/profile_form.html'}
+		{/if}
 		</div>
 	</div>
 {/block}

@@ -15,17 +15,7 @@ $(document).ready(function () {
 		e.stopPropagation();
 		ajaxCallAction("home", 'LogoutUser', null, function(data) {
 			if (data.result) {
-				$('.toolbar_logout_button').remove();
-				$('.toolbar_manage_button').remove();
-				$('.top_manage_menu').remove();
-				elem = $('<a href=""></a>')
-					.addClass('toolbar_login_button')
-					.text('Login');
-				$('.top_right_tools').append(elem);
-				elem = $('<a href=""></a>')
-					.addClass('toolbar_register_button')
-					.text('Register');
-				$('.top_right_tools').append(elem);
+				window.location.reload();
 			}
 		});
 	});

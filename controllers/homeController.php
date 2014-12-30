@@ -7,6 +7,12 @@ class HomeController extends Controller
 		parent::__construct();
 		$this->tpl->assign('current_user', $this->context->user);
 		$this->tpl->assign('members', User::loadMembers());
+		$this->getLinks();
+	}
+
+	public function getLinks()
+	{
+		$this->tpl->assign('home_link', _DOMAIN_.'/home');
 		$this->tpl->assign('my_profile_link', _DOMAIN_.'/profile&edit&id='.$this->context->user->id);
 	}
 
