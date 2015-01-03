@@ -56,4 +56,13 @@ class User extends DbObject
 		}
 		return $members;
 	}
+
+	public function getProfileImagePath()
+	{
+		if (($files = glob('img/uploads/'.$this->firstname.'-'.$this->lastname.'-'.$this->id.'.*'))) {
+			return $files[0];
+		} else {
+			return 'img/avatar.jpg';
+		}
+	}
 }

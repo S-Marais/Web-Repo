@@ -2,7 +2,7 @@
 {foreach $members as $member}
 	<li>
 		<div class="inner_info">
-			<img class="avatar" src="img/avatar.jpg" />
+			<img class="avatar" src="{$member->getProfileImagePath()}" />
 			<div class="info">
 				<a href="">{$member->firstname} {$member->lastname}</a>
 			</div>

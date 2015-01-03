@@ -1,3 +1,11 @@
+<form id="profile_image_form" enctype="multipart/form-data" action="profile&edit&id={$id_user}&action=UploadProfileImage" method="post">
+	<label>Profile image</label><br />
+	<img id="profile_image_preview" src="{$avatar_path}" /><br />
+	<span id="response" class=""></span>
+	<div style="overflow:hidden;width:0;height:0;">
+		<input type="file" name="profile_image_input" id="profile_image_input">
+	</div>
+</form>
 <form>
 	<label>Short presentation</label><br />
 	<textarea id="description" rows="5" cols="78"></textarea>

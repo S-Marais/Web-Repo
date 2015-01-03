@@ -1,3 +1,18 @@
+#profile_image_preview:hover {
+	border: dashed 3px #8b9;
+	cursor: pointer;
+}
+#profile_image_preview.dragover {
+	border: dashed 3px #f66;
+}
+#profile_image_preview {
+	width:120px;
+	height:120px;
+	border-radius: 24px 24px 0px 24px;
+	margin-top:16px;
+	margin-bottom:16px;
+	border: dashed 3px #568;
+}
 #main_form {
 	display: block;
 	width: 670px;
